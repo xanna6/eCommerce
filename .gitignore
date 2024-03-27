@@ -1,4 +1,7 @@
 store/__pycache__/
 ecommerce/__pycache__/
+store/migrations/__pycache__/
+
+db.sqlite3
 
 .idea

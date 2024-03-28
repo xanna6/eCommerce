@@ -1,4 +1,30 @@
 a.cart-icon {
-    color:white;
-    margin:10px;
+    color: white;
+    margin-left: 20px;
+    margin-right: 30px;
+    display: inline-block;
+}
+
+.bg-dark {
+    background-color: DarkOrange!important;
+}
+
+.box-element {
+    box-shadow: 0 0 16px hsl(0, 0%, 80%);
+    background-color: white;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.product-box {
+    border-radius: 0 0 4px 4px;
+}
+
+.price {
+    display: inline-block;
+    float: right;
+}
+
+.col-lg-4 {
+    margin-top: 20px;
 }

@@ -1,0 +1,53 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box-element">
+            <a class="btn btn-outline-dark" href="{% url 'products' %}">&#x2190; Continue shopping</a>
+
+            <br>
+            <br>
+
+            <table class="table">
+                <tr>
+                    <th><h5>Items: <strong>3</strong></h5></th>
+                    <th><h5>Total: <strong>7998 PLN</strong></h5></th>
+                    <th>
+                        <a class="btn btn-success" style="float: right; margin: 5px;" href="#" >Checkout</a>
+                    </th>
+                </tr>
+            </table>
+        </div>
+
+        <br>
+
+        <div class="box-element">
+            <table class="table">
+                <tr>
+                    <th><strong>No</strong></th>
+                    <th><strong>Item</strong></th>
+                    <th><strong>Price</strong></th>
+                    <th><strong>Quantity</strong></th>
+                    <th><strong>Total</strong></th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Product 1</td>
+                    <td>100 PLN</td>
+                    <td>
+                        <div class="quantity">2</div>
+                        <div style="display: inline-block;">
+                            <img class="arrow-up" src="{% static 'images/arrow.png' %}">
+                            <img class="arrow-down" src="{% static 'images/arrow.png' %}">
+                        </div>
+                    </td>
+                    <td>200 PLN</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

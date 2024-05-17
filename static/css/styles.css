@@ -28,3 +28,27 @@ a.cart-icon {
 .col-lg-4 {
     margin-top: 20px;
 }
+
+.col-lg-12 {
+    margin-top: 20px;
+}
+
+.quantity {
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 7px;
+    height: 30px;
+}
+
+.arrow-up {
+    width: 20px;
+    display: block;
+    cursor: pointer;
+}
+
+.arrow-down {
+    width: 20px;
+    display: block;
+    cursor: pointer;
+    transform: scaleY(-1);
+}

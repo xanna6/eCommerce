@@ -29,6 +29,10 @@ a.cart-icon {
     margin-top: 20px;
 }
 
+.col-lg-6 {
+    margin-top: 20px;
+}
+
 .col-lg-12 {
     margin-top: 20px;
 }
@@ -51,4 +55,10 @@ a.cart-icon {
     display: block;
     cursor: pointer;
     transform: scaleY(-1);
+}
+
+.form-field {
+    width: 250px;
+    display: inline-block;
+    padding: 5px;
 }

@@ -1,0 +1,57 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="box-element">
+            <form id="form">
+                <div id="user-info">
+                    <div class="form-field">
+                        <input required class="form-control" type="text" name="name" placeholder="Name">
+                    </div>
+                    <div class="form-field">
+                        <input required class="form-control" type="text" name="email" placeholder="E-mail">
+                    </div>
+                </div>
+                <div id="shipping-info">
+                    <hr>
+                    <p>Shipping information:</p>
+                    <div class="form-field">
+                        <input class="form-control" type="text" name="address" placeholder="Address">
+                    </div>
+                    <div class="form-field">
+                        <input class="form-control" type="text" name="country" placeholder="Country">
+                    </div>
+                    <div class="form-field">
+                        <input class="form-control" type="text" name="postal-code" placeholder="Postal code">
+                    </div>
+                    <div class="form-field">
+                        <input class="form-control" type="text" name="city" placeholder="City">
+                    </div>
+                </div>
+                <hr>
+                <input type="submit" class="btn btn-success btn-block" value="Continue">
+            </form>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="box-element">
+            <a class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Back to cart</a>
+            <hr>
+            <h4>Order summary</h4>
+            <table class="table">
+                <tr>
+                    <td>Product 1</td>
+                    <td>1000 PLN</td>
+                    <td>x2</td>
+                </tr>
+            </table>
+            <h5>Items: 2</h5>
+            <h5>Total: 2000 PLN</h5>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

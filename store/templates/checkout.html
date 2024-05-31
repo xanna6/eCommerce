@@ -42,14 +42,16 @@
             <hr>
             <h4>Order summary</h4>
             <table class="table">
+                {% for item in items%}
                 <tr>
-                    <td>Product 1</td>
-                    <td>1000 PLN</td>
-                    <td>x2</td>
+                    <td>{{item.product.name}}</td>
+                    <td>{{item.product.price|floatformat:2}}</td>
+                    <td>x{{item.quantity}}</td>
                 </tr>
+                {% endfor %}
             </table>
-            <h5>Items: 2</h5>
-            <h5>Total: 2000 PLN</h5>
+            <h5>Items: {{order.get_cart_items}}</h5>
+            <h5>Total: {{order.get_cart_total|floatformat:2}} PLN</h5>
         </div>
     </div>
 </div>

@@ -1,7 +1,6 @@
 a.cart-icon {
     color: white;
     margin-left: 20px;
-    margin-right: 30px;
     display: inline-block;
 }
 
@@ -61,4 +60,15 @@ a.cart-icon {
     width: 250px;
     display: inline-block;
     padding: 5px;
+}
+
+.cart-total {
+    display: block;
+    text-align: center;
+    color: black;
+    background-color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 14px;
 }

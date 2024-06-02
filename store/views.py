@@ -68,7 +68,12 @@ def updateCart(request):
 
     if action == 'add':
         orderItem.quantity = (orderItem.quantity + 1)
+    elif action == 'remove':
+        orderItem.quantity = (orderItem.quantity - 1)
 
     orderItem.save()
+
+    if orderItem.quantity <= 0:
+        orderItem.delete()
 
     return JsonResponse('Item was added to cart', safe=False)

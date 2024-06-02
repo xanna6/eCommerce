@@ -40,8 +40,10 @@
                     <td>
                         <div class="quantity">{{item.quantity}}</div>
                         <div style="display: inline-block;">
-                            <img class="arrow-up" src="{% static 'images/arrow.png' %}">
-                            <img class="arrow-down" src="{% static 'images/arrow.png' %}">
+                            <img data-product={{item.product.id}} data-action="add" class="arrow-up update-cart"
+                                 src="{% static 'images/arrow.png' %}">
+                            <img data-product={{item.product.id}} data-action="remove" class="arrow-down update-cart"
+                                 src="{% static 'images/arrow.png' %}">
                         </div>
                     </td>
                     <td>{{item.get_total|floatformat:2}} PLN</td>

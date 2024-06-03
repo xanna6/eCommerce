@@ -6,7 +6,6 @@ from django.http import JsonResponse
 
 
 def products(request):
-
     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, completed=False)
@@ -64,7 +63,7 @@ def updateCart(request):
     product = Product.objects.get(id=productId)
     order, created = Order.objects.get_or_create(customer=customer, completed=False)
 
-    orderItem, created = OrderItem.objects.get_or_create(order=order,product=product)
+    orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
 
     if action == 'add':
         orderItem.quantity = (orderItem.quantity + 1)
@@ -77,3 +76,13 @@ def updateCart(request):
         orderItem.delete()
 
     return JsonResponse('Item was added to cart', safe=False)
+
+
+def processOrder(request):
+    if request.method == 'POST':
+        customerInfo = Customer()
+        customerInfo.name = request.POST['name']
+        customerInfo.email = request.POST['email']
+        print(customerInfo)
+
+    return JsonResponse('Order completed', safe=False)

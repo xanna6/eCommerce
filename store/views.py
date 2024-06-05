@@ -80,9 +80,18 @@ def updateCart(request):
 
 def processOrder(request):
     if request.method == 'POST':
-        customerInfo = Customer()
-        customerInfo.name = request.POST['name']
-        customerInfo.email = request.POST['email']
-        print(customerInfo)
+        if request.user.is_authenticated:
+            customer = request.user.customer
+            order, created = Order.objects.get_or_create(customer=customer, completed=False)
+            order.completed = True
+            order.save()
+
+            ShippingData.objects.create(
+                order=order,
+                address=request.POST['address'],
+                postalCode=request.POST['postal-code'],
+                city=request.POST['city'],
+                country=request.POST['country']
+            )
 
     return JsonResponse('Order completed', safe=False)

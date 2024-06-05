@@ -58,3 +58,15 @@ class OrderItem(models.Model):
     def get_total(self):
         total = self.product.price * self.quantity
         return total
+
+
+class ShippingData(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True, blank=True)
+    address = models.CharField(max_length=100)
+    postalCode = models.CharField(max_length=6)
+    city = models.CharField(max_length=50)
+    country = models.CharField(max_length=50)
+    add_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.address

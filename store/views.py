@@ -2,6 +2,7 @@ import json
 
 from django.shortcuts import render
 from .models import *
+from .utils import cookieCart
 from django.http import JsonResponse
 
 
@@ -9,12 +10,10 @@ def products(request):
     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, completed=False)
-        items = order.orderitem_set.all()
         orderItems = order.get_cart_items
     else:
-        items = []
-        order = {'get_cart_total': 0, 'get_cart_items': 0}
-        orderItems = order['get_cart_items']
+        cookieData = cookieCart(request)
+        orderItems = cookieData['orderItems']
 
     product_list = Product.objects.all()
     context = {'products': product_list, 'cartItems': orderItems}
@@ -28,9 +27,10 @@ def cart(request):
         items = order.orderitem_set.all()
         orderItems = order.get_cart_items
     else:
-        items = []
-        order = {'get_cart_total': 0, 'get_cart_items': 0}
-        orderItems = order['get_cart_items']
+        cookieData = cookieCart(request)
+        orderItems = cookieData['orderItems']
+        order = cookieData['order']
+        items = cookieData['items']
 
     context = {'items': items, 'order': order, 'cartItems': orderItems}
     return render(request, 'cart.html', context)
@@ -43,9 +43,10 @@ def checkout(request):
         items = order.orderitem_set.all()
         orderItems = order.get_cart_items
     else:
-        items = []
-        order = {'get_cart_total': 0, 'get_cart_items': 0}
-        orderItems = order['get_cart_items']
+        cookieData = cookieCart(request)
+        orderItems = cookieData['orderItems']
+        order = cookieData['order']
+        items = cookieData['items']
 
     context = {'items': items, 'order': order, 'cartItems': orderItems}
     return render(request, 'checkout.html', context)

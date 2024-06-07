@@ -1,4 +1,5 @@
 import json
+
 from .models import *
 
 
@@ -49,3 +50,30 @@ def cartData(request):
         order = cookieData['order']
         items = cookieData['items']
     return {'orderItems': orderItems, 'order': order, 'items': items}
+
+
+def guestOrder(request):
+    print('Cookies: ', request.COOKIES)
+    name = request.POST['name']
+    email = request.POST['email']
+
+    customer, created = Customer.objects.get_or_create(email=email)
+    customer.name = name
+    customer.save()
+
+    cookieData = cookieCart(request)
+    items = cookieData['items']
+    order = Order.objects.create(
+        customer=customer,
+        completed=False
+    )
+
+    for item in items:
+        product = Product.objects.get(id=item['product']['id'])
+        orderItem = OrderItem.objects.create(
+            product=product,
+            order=order,
+            quantity=item['quantity']
+        )
+
+    return customer, order

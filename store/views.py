@@ -2,7 +2,7 @@ import json
 
 from django.shortcuts import render
 from .models import *
-from .utils import cookieCart, cartData
+from .utils import cookieCart, cartData, guestOrder
 from django.http import JsonResponse
 
 
@@ -67,15 +67,21 @@ def processOrder(request):
         if request.user.is_authenticated:
             customer = request.user.customer
             order, created = Order.objects.get_or_create(customer=customer, completed=False)
-            order.completed = True
-            order.save()
+        else:
+            customer, order = guestOrder(request)
 
-            ShippingData.objects.create(
-                order=order,
-                address=request.POST['address'],
-                postalCode=request.POST['postal-code'],
-                city=request.POST['city'],
-                country=request.POST['country']
-            )
+        order.completed = True
+        order.save()
 
-    return JsonResponse('Order completed', safe=False)
+        ShippingData.objects.create(
+            order=order,
+            address=request.POST['address'],
+            postalCode=request.POST['postal-code'],
+            city=request.POST['city'],
+            country=request.POST['country']
+        )
+
+    context = {'cartItems': 0}
+    response = render(request, 'summary.html', context)
+    response.delete_cookie('cart')
+    return response

@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="col-lg-12">
+        <div class="box-element">
+            <div class="summary-statement">
+                <h3>Your order has been placed</h3>
+                <h4>Thank you for shopping in our store</h4>
+                <a class="btn btn-outline-dark" href="{% url 'products' %}">Home page</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

@@ -72,3 +72,7 @@ a.cart-icon {
     border-radius: 50%;
     font-size: 14px;
 }
+
+.summary-statement {
+    text-align: center;
+}
